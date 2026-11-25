@@ -1,14 +1,3 @@
-        const params = new URLSearchParams({
-            service: service,
-            name: name,
-            phone: phone,
-            t: Date.now()
-        });
-
-        // Надежная отправка без блокировок CORS в любых браузерах
-        const ping = new Image();
-        ping.src = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
-
 const params = new URLSearchParams({
             service: service,
             name: name,
