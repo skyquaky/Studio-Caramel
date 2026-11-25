@@ -1,4 +1,4 @@
-const SCRIPT_URL = 'https://google.com';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0KvHrRAIZx0Vif93bG8oX2l54Vas0zyWAMEf_qHHFP8os4CYxjmVFmeRZEEfT35o2ig/exec';
 
 let savedPass = localStorage.getItem('caramel_admin_pass') || '';
 let knownOrderIds = new Set();
