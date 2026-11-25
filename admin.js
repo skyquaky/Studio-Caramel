@@ -1,9 +1,17 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0KvHrRAIZx0Vif93bG8oX2l54Vas0zyWAMEf_qHHFP8os4CYxjmVFmeRZEEfT35o2ig/exec';
+const SCRIPT_URL = 'https://google.com';
 
 let savedPass = localStorage.getItem('caramel_admin_pass') || '';
 let knownOrderIds = new Set();
 let isFirstLoad = true;
 let pollTimer = null;
+let swReg = null;
+
+// Регистрация фонового Service Worker для системных пуш-уведомлений на телефоне
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then((reg) => {
+        swReg = reg;
+    }).catch(() => {});
+}
 
 // Запрос к Google Script в обход ограничений браузера (JSONP)
 function requestScript(paramsObj) {
@@ -71,13 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
             Notification.requestPermission().then((perm) => {
                 if (perm === 'granted') {
                     enableNotifyBtn.textContent = '🔔 Уведомления включены';
-                    new Notification('Studio Caramel', {
-                        body: 'Уведомления о новых заявках успешно включены!'
-                    });
+                    showSystemPush('Studio Caramel', 'Системные уведомления о новых заявках включены!');
                 } else {
                     alert('Разрешите уведомления в настройках браузера для этого сайта.');
                 }
             });
+        } else {
+            alert('Ваш браузер не поддерживает пуш-уведомления. На iPhone добавьте сайт на экран «Домой» через меню «Поделиться».');
         }
     });
 
@@ -190,10 +198,23 @@ async function changeOrderStatus(id, newStatus) {
 
 function triggerNewOrderAlert(order) {
     playDingSound();
-    if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('💅 Новая заявка — Studio Caramel', {
-            body: `${order.service}\nКлиент: ${order.name} (${order.phone})`
+    showSystemPush(
+        '💅 Новая заявка — Studio Caramel',
+        `${order.service}\nКлиент: ${order.name} (${order.phone})`
+    );
+}
+
+function showSystemPush(title, bodyText) {
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+
+    if (swReg && swReg.showNotification) {
+        swReg.showNotification(title, {
+            body: bodyText,
+            icon: 'images/logo.png',
+            vibrate: [200, 100, 200]
         });
+    } else {
+        new Notification(title, { body: bodyText });
     }
 }
 
