@@ -1,15 +1,3 @@
-const params = new URLSearchParams({
-            service: service,
-            name: name,
-            phone: phone,
-            t: Date.now()
-        });
-
-        const fullUrl = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
-
-        // Отправка через no-cors (Android Chrome пропускает всегда)
-        fetch(fullUrl, { mode: 'no-cors', keepalive: true }).catch(() => {});
-
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOyojMhww9kUrbwbo1mn9o-EQL_v6Uf6JQJ-FYZ0Un1_7aXZSfgG66-JS5Q-hPYrqdYg/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
