@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0KvHrRAIZx0Vif93bG8oX2l54Vas0zyWAMEf_qHHFP8os4CYxjmVFmeRZEEfT35o2ig/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOyojMhww9kUrbwbo1mn9o-EQL_v6Uf6JQJ-FYZ0Un1_7aXZSfgG66-JS5Q-hPYrqdYg/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
     const serviceSelect = document.getElementById('service-select');
