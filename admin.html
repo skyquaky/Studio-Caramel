@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Caramel — Кабинет мастера</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Экран входа по паролю -->
+        <div class="login-box" id="login-screen">
+            <div class="script">Studio Caramel</div>
+            <h2>Вход в кабинет заявок</h2>
+            <input type="password" id="pass-input" placeholder="Введите пароль (caramel2026)">
+            <button type="button" class="btn btn-primary" id="login-btn">Войти</button>
+            <p class="error-text" id="login-error"></p>
+        </div>
+
+        <!-- Рабочая панель мастера -->
+        <div id="admin-screen" style="display: none;">
+            <div class="top-bar">
+                <div>
+                    <div class="script">Studio Caramel</div>
+                    <p class="sub-info">Панель управления записями • Автообновление каждые 10 сек</p>
+                </div>
+                <div class="top-actions">
+                    <button type="button" class="btn btn-sm btn-notify" id="enable-notify-btn">🔔 Включить уведомления</button>
+                    <button type="button" class="btn btn-sm btn-notify" id="refresh-btn">🔄 Обновить</button>
+                    <button type="button" class="btn btn-sm btn-del" id="logout-btn">Выйти</button>
+                </div>
+            </div>
+
+            <div class="orders-list" id="orders-list">
+                <div class="empty-msg">Загрузка заявок...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

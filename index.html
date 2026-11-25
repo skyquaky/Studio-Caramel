@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Caramel | Маникюр и студия красоты в Хабаровске</title>
+    <link href="https://googleapis.com" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-grid-pattern"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <canvas id="sparkle-canvas"></canvas>
+    <!-- Боковой декор для широких экранов -->
+    <div class="side-decor side-left">
+        <div class="side-line"></div>
+        <span class="side-text">STUDIO CARAMEL • KHABAROVSK</span>
+        <div class="side-line"></div>
+    </div>
+    <div class="side-decor side-right">
+        <div class="side-line"></div>
+        <span class="side-text">ESTHETICS • NAILS • BEAUTY</span>
+        <div class="side-line"></div>
+    </div>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo-box">
+                <img src="images/logo.png" alt="Studio Caramel" class="header-logo-img">
+            </a>
+
+            <nav>
+                <a href="#services">Услуги и цены</a>
+                <a href="#gallery">Фото и видео</a>
+                <a href="#masters">Мастера</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+
+            <div class="header-right">
+                <div class="header-meta">
+                    <a href="https://go.2gis.com/FcE4t" target="_blank" class="header-addr">📍 Краснореченская, 34Б</a>
+                    <span class="header-phone">+7 (924) 218-24-67</span>
+                </div>
+
+                <a href="#booking" class="btn btn-primary">Записаться</a>
+            </div>
+        </div>
+        <div class="scroll-progress" id="scroll-progress"></div>
+    </header>
+
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="badge">Предварительная запись • Хабаровск</div>
+                <h1><span>Дарим заботу,</span> которая подчеркивает вашу красоту <span>"Стремись к совершенству"</span></h1>
+                <p>Безупречное покрытие, наращивание ногтей, депиляция и эстетика взгляда в уютной студии «Studio Caramel». Стерильный инструмент и премиальные материалы.</p>
+                <div class="hero-actions">
+                    <a href="#booking" class="btn btn-primary">Записаться онлайн</a>
+                    <a href="#services" class="btn btn-outline">Посмотреть прайс</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <img src="images/logopop.jpg" alt="Studio Caramel — Стремись к совершенству" class="hero-logo-img">
+                <ul class="hero-card-list">
+                    <li>Маникюр, педикюр, наращивание</li>
+                    <li>Шугаринг (сахарная паста, воск)</li>
+                    <li>Перманентный макияж и оформление бровей</li>
+                    <li>Карбоновый пилинг и удаление татуажа</li>
+                    <li>Ультразвуковая чистка лица</li>
+                    <li>RF - Лифтинг лица</li>
+                    <li>Ламинирование ресниц</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-script script-font">Прайс-лист</div>
+                <h2>Услуги и точная стоимость</h2>
+                <p>Выберите направление и нажмите на любую процедуру для быстрой записи</p>
+            </div>
+            <div class="price-tabs">
+                <button type="button" class="p-tab active" data-cat="manicure">Маникюр</button>
+                <button type="button" class="p-tab" data-cat="pedicure">Педикюр</button>
+                <button type="button" class="p-tab" data-cat="depil">Депиляция</button>
+                <button type="button" class="p-tab" data-cat="brows">Брови и ПМ</button>
+                <button type="button" class="p-tab" data-cat="laser">Лазер и пилинг</button>
+                <button type="button" class="p-tab" data-cat="courses">Обучение</button>
+            </div>
+
+            <div class="price-panel active" id="cat-manicure">
+                <div class="price-rows">
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Маникюр без покрытия</h4>
+                            <span>Полное снятие / обработка / опил формы</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">1 600 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Маникюр без покрытия (1 600 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Маникюр + Витаминное бондирование</h4>
+                            <span>Снятие / укрепляющее витаминное бондирование</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">2 500 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Маникюр + витаминное бондирование (2 500 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Маникюр с укреплением гелем</h4>
+                            <span>Снятие / укрепление гелем / покрытие однотон / опил формы</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">2 800 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Маникюр с укреплением гелем (2 800 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Маникюр с укреплением полигелем</h4>
+                            <span>Снятие / поднятие клюющих / донаращивание углов / четкий квадрат / покрытие гелем</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">3 000 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Маникюр с укреплением полигелем (3 000 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Наращивание ногтей</h4>
+                            <span>Моделирование длины и архитектуры, покрытие</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">от 3 500 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Наращивание ногтей (от 3 500 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nail-guide-box">
+                    <!-- Левая часть: интерактивная схема ногтя с линейкой -->
+                    <div class="nail-visual">
+                        <svg viewBox="0 0 210 270" class="nail-svg" id="nail-svg">
+                            <!-- Контур пальца -->
+                            <path d="M 35 10 L 35 110 C 35 135, 165 135, 165 110 L 165 10" fill="rgba(155, 27, 199, 0.08)" stroke="rgba(184, 59, 227, 0.45)" stroke-width="2"/>
+
+                            <!-- Зона S (короткие) -->
+                            <g class="nail-zone active" data-len="S">
+                                <path d="M 52 35 C 52 18, 148 18, 148 35 L 148 105 C 148 122, 52 122, 52 105 Z" class="zone-fill"/>
+                                <text x="100" y="95" class="zone-letter">S</text>
+                                <text x="100" y="109" class="zone-sub">короткие</text>
+                            </g>
+
+                            <!-- Зона M (средние: 0-2) -->
+                            <g class="nail-zone" data-len="M">
+                                <rect x="52" y="118" width="96" height="32" class="zone-fill"/>
+                                <text x="100" y="135" class="zone-letter">M</text>
+                                <text x="100" y="146" class="zone-sub">средние</text>
+                            </g>
+
+                            <!-- Зона L (длинные: 2-4) -->
+                            <g class="nail-zone" data-len="L">
+                                <rect x="52" y="150" width="96" height="32" class="zone-fill"/>
+                                <text x="100" y="167" class="zone-letter">L</text>
+                                <text x="100" y="178" class="zone-sub">длинные</text>
+                            </g>
+
+                            <!-- Зона XL (экстра: 4-6) -->
+                            <g class="nail-zone" data-len="XL">
+                                <rect x="52" y="182" width="96" height="32" class="zone-fill"/>
+                                <text x="100" y="199" class="zone-letter">XL</text>
+                                <text x="100" y="210" class="zone-sub">экстра</text>
+                            </g>
+
+                            <!-- Зона XXL (ультра: 6-8) -->
+                            <g class="nail-zone" data-len="XXL">
+                                <path d="M 52 214 L 148 214 L 148 242 C 148 250, 52 250, 52 242 Z" class="zone-fill"/>
+                                <text x="100" y="231" class="zone-letter">XXL</text>
+                                <text x="100" y="242" class="zone-sub">ультра</text>
+                            </g>
+
+                            <!-- Контур свободного края и деления линейки 0-8 -->
+                            <path d="M 52 105 L 52 242 C 52 250, 148 250, 148 242 L 148 105" fill="none" stroke="rgba(184, 59, 227, 0.55)" stroke-width="2"/>
+                            <line x1="45" y1="118" x2="158" y2="118" class="ruler-line"/><text x="166" y="122" class="ruler-num">0</text>
+                            <line x1="45" y1="134" x2="155" y2="134" class="ruler-line-sm"/><text x="166" y="138" class="ruler-num">1</text>
+                            <line x1="45" y1="150" x2="158" y2="150" class="ruler-line"/><text x="166" y="154" class="ruler-num">2</text>
+                            <line x1="45" y1="166" x2="155" y2="166" class="ruler-line-sm"/><text x="166" y="170" class="ruler-num">3</text>
+                            <line x1="45" y1="182" x2="158" y2="182" class="ruler-line"/><text x="166" y="186" class="ruler-num">4</text>
+                            <line x1="45" y1="198" x2="155" y2="198" class="ruler-line-sm"/><text x="166" y="202" class="ruler-num">5</text>
+                            <line x1="45" y1="214" x2="158" y2="214" class="ruler-line"/><text x="166" y="218" class="ruler-num">6</text>
+                            <line x1="45" y1="230" x2="155" y2="230" class="ruler-line-sm"/><text x="166" y="234" class="ruler-num">7</text>
+                            <line x1="45" y1="246" x2="158" y2="246" class="ruler-line"/><text x="166" y="250" class="ruler-num">8</text>
+                        </svg>
+                    </div>
+
+                    <!-- Правая часть: выбор длины и ценник дизайна -->
+                    <div class="nail-controls">
+                        <div class="nail-block">
+                            <h4>Длина ногтей <small>(нажмите для примера)</small></h4>
+                            <div class="length-pills">
+                                <button type="button" class="len-pill active" data-len="S"><span>S</span> 0 ₽</button>
+                                <button type="button" class="len-pill" data-len="M"><span>M</span> 0 ₽</button>
+                                <button type="button" class="len-pill" data-len="L"><span>L</span> +200 ₽</button>
+                                <button type="button" class="len-pill" data-len="XL"><span>XL</span> +300 ₽</button>
+                                <button type="button" class="len-pill" data-len="XXL"><span>XXL</span> +500 ₽</button>
+                            </div>
+                        </div>
+
+                        <div class="nail-block">
+                            <h4>Дополнительный дизайн</h4>
+                            <div class="design-list">
+                                <div class="design-item"><span>Френч</span><strong>+ 300 ₽</strong></div>
+                                <div class="design-item"><span>Втирка</span><strong>+ 200 ₽</strong></div>
+                                <div class="design-item"><span>Прочий дизайн</span><strong>от + 200 ₽</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="price-panel" id="cat-pedicure">
+                <div class="price-rows">
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>1. Обработка пальчиков без покрытия</h4>
+                            <span>Деликатная эстетическая обработка пальцев</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">1 800 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Педикюр: пальчики без покрытия (1 800 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>2. Обработка стопы полностью без покрытия</h4>
+                            <span>Обработка стоп и пальчиков без нанесения покрытия</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">2 300 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Педикюр: стопа полностью без покрытия (2 300 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>3. Обработка пальцев + покрытие</h4>
+                            <span>Обработка пальчиков и стойкое покрытие гель-лак</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">2 700 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Педикюр: пальчики с покрытием (2 700 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>4. Обработка стопы полностью + покрытие</h4>
+                            <span>Полный комплексный педикюр со стойким покрытием</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">3 300 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Педикюр: стопа полностью с покрытием (3 300 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="addons-box">
+                    <div class="addon-col">
+                        <strong>Дополнительно к педикюру:</strong> 5. Френч — +200 ₽ • 6. Дизайн — +200 ₽
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-panel" id="cat-depil">
+                <div class="depil-grid">
+                    <div class="depil-group">
+                        <h4>Лицо</h4>
+                        <div class="d-item"><span>Бакенбарды</span><strong>300 ₽</strong></div>
+                        <div class="d-item"><span>Верхняя губа</span><strong>300 ₽</strong></div>
+                        <div class="d-item"><span>Подбородок</span><strong>300 ₽</strong></div>
+                    </div>
+
+                    <div class="depil-group">
+                        <h4>Руки</h4>
+                        <div class="d-item"><span>Подмышечные впадины</span><strong>500 ₽</strong></div>
+                        <div class="d-item"><span>Руки до локтя</span><strong>1 200 ₽</strong></div>
+                        <div class="d-item"><span>Руки полностью</span><strong>1 500 ₽</strong></div>
+                    </div>
+
+                    <div class="depil-group">
+                        <h4>Бикини и живот</h4>
+                        <div class="d-item"><span>Глубокое бикини</span><strong>1 800 ₽</strong></div>
+                        <div class="d-item"><span>Классическое бикини</span><strong>1 300 ₽</strong></div>
+                        <div class="d-item"><span>Живот полностью / дорожка</span><strong>500 ₽</strong></div>
+                    </div>
+
+                    <div class="depil-group">
+                        <h4>Ноги и спина</h4>
+                        <div class="d-item"><span>Ноги полностью</span><strong>1 800 ₽</strong></div>
+                        <div class="d-item"><span>Голень / бедра</span><strong>1 500 ₽</strong></div>
+                        <div class="d-item"><span>Спина</span><strong>700 ₽</strong></div>
+                        <div class="d-item"><span>Поясница / ягодица (одна зона)</span><strong>500 ₽</strong></div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="#booking" class="btn btn-primary select-service-btn" data-service="Депиляция / Шугаринг (выбранные зоны)">Записаться на депиляцию</a>
+                </div>
+            </div>
+            <div class="price-panel" id="cat-brows">
+                <div class="price-rows">
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Коррекция бровей</h4>
+                            <span>Пинцет, воск</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">300 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Коррекция бровей (300 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Окрашивание бровей хной</h4>
+                            <span>Уход, архитектура, окрашивание хной</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">1 200 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Окрашивание бровей хной (1 200 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Перманентный макияж бровей — Первичная процедура</h4>
+                            <span>PM Brow • Подбор формы и оттенка</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">7 000 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="ПМ бровей: первичная процедура (7 000 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Перманентный макияж бровей — Коррекция</h4>
+                            <span>Закрепление результата после первичной процедуры</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">5 000 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="ПМ бровей: коррекция (5 000 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Перманентный макияж бровей — Рефреш</h4>
+                            <span>Обновление формы и цвета</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">7 000 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="ПМ бровей: рефреш (7 000 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Перманентный макияж бровей — Перекрытие</h4>
+                            <span>Перекрытие чужой работы</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">8 000 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="ПМ бровей: перекрытие чужой работы (8 000 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-panel" id="cat-laser">
+                <div class="price-rows">
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Лазер, Ремувер (Осветление ПМ и тату)</h4>
+                            <span>Губы, брови, межресничка</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">3 000 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Лазер / Ремувер осветление ПМ (3 000 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Карбоновый пилинг</h4>
+                            <span>Лицо • Глубокое очищение и обновление кожи</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">3 500 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Карбоновый пилинг лица (3 500 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Удаление / осветление тату</h4>
+                            <span>Стоимость зависит от площади рисунка</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">от 3 000 ₽</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Удаление / осветление тату (от 3 000 ₽)">Выбрать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="price-panel" id="cat-courses">
+                <div class="price-rows">
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Базовый курс «Мастер маникюра с нуля»</h4>
+                            <span>• Индивидуальное обучение • Теория, постановка руки, комбинированный маникюр, выравнивание и покрытие под кутикулу, ремонт ногтей, стирилизация по СанПин.</span>
+                            <span>• Курс состоит из 2-3 дня. Группа из 1-2-х человек</span>
+                            <span>• Выдача сертификата</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Базовый курс маникюра">Записаться</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Повышение «Квалификации / Наращивание»</h4>
+                            <span>• Индивидуальный разбор ошибок • Укрепление гелем и полигелем, работа со сложными ногтями, идеальный квадрат, наращивание верхними формами.</span>
+                            <span>• Курс состоит из 1 дня</span>
+                            <span>• Выдача сертификата</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Повышение квалификации (ногти)">Записаться</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Обучение «Эстетический педикюр»</h4>
+                            <span>• Обработка пальчиков и стопы, подбор фрез, безопасная техника и стойкое покрытие</span>
+                            <span>• Курс состоит из 1 дня</span>
+                            <span>• Выдача сертификата</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Эстетический педикюр">Записаться</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Курс «Восковая депиляция»</h4>
+                            <span>• Постановка руки, работа с воском по всем зонам, отработка на моделях</span>
+                            <span>• Курс состоит из 2-х дней</span>
+                            <span>• Выдача сертификата</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Шугаринг и депиляция">Записаться</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="addons-box">
+                    <div class="addon-col">
+                        <strong>Формат обучения:</strong> Индивидуальные занятия с инструктором студии • Все материалы и модели предоставляются • Выдача сертификата
+                    </div>
+                </div>
+            </div>
+            <div class="price-panel" id="cat-courses">
+                <div class="price-rows">
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Базовый курс «Мастер маникюра с нуля»</h4>
+                            <span>Индивидуальное обучение • Теория, постановка руки, комбинированный маникюр, выравнивание и покрытие под кутикулу</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Базовый курс маникюра">Записаться</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Повышение квалификации / Наращивание</h4>
+                            <span>Индивидуальный разбор ошибок • Укрепление гелем и полигелем, работа со сложными ногтями, идеальный квадрат</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Повышение квалификации (ногти)">Записаться</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Обучение «Эстетический педикюр»</h4>
+                            <span>Обработка пальчиков и стопы, подбор фрез, безопасная техника и стойкое покрытие</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Эстетический педикюр">Записаться</a>
+                        </div>
+                    </div>
+
+                    <div class="p-row">
+                        <div class="p-info">
+                            <h4>Курс «Шугаринг / Депиляция»</h4>
+                            <span>Постановка руки, работа с сахарной пастой и воском по всем зонам, отработка на моделях</span>
+                        </div>
+                        <div class="p-right">
+                            <span class="p-cost">Индивидуально</span>
+                            <a href="#booking" class="btn btn-outline btn-xs select-service-btn" data-service="Обучение: Шугаринг и депиляция">Записаться</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="addons-box">
+                    <div class="addon-col">
+                        <strong>Формат обучения:</strong> Индивидуальные занятия с мастером Юлией • Все материалы и модели предоставляются • Выдача сертификата
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-script script-font">Портфолио</div>
+                <h2>Фото и видео наших работ</h2>
+                <p>Нажмите на любую карточку, чтобы открыть работу на весь экран</p>
+            </div>
+
+            <div class="gallery-tabs">
+                <button type="button" class="g-tab active" data-type="all">Все работы (8)</button>
+                <button type="button" class="g-tab" data-type="photo">Фотографии (4)</button>
+                <button type="button" class="g-tab" data-type="video">Видео работ (1)</button>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-card" data-media="photo" data-src="images/work-1.jpg">
+                    <img src="images/work1.jpg" loading="lazy" alt="Маникюр с покрытием">
+                    <div class="gallery-overlay">
+                        <span>Фото • Ногтевой сервис</span>
+                        <h4>Идеальный блик и покрытие</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-card video-card" data-media="video" data-src="images/video-1.mp4">
+                    <img src="images/work2.jpg" loading="lazy" alt="Укрепление и дизайн ногтей">
+                    <div class="gallery-overlay">
+                        <span>Фото • Маникюр</span>
+                        <h4>Укрепление и дизайн ногтей</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-media="photo" data-src="images/work-2.jpg">
+                    <video src="images/video-1.mov" autoplay loop muted playsinline poster="images/work2.jpg"></video>
+                    <div class="video-badge">▶ Видео</div>
+                    <div class="gallery-overlay">
+                        <span>Видео • Моделирование</span>
+                        <h4>Наращивание и архитектура</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-card video-card">
+                    <img src="images/work3.jpg" loading="lazy" alt="Пермамент">
+                    <div class="gallery-overlay">
+                        <span>Фото • Перманент</span>
+                        <h4>Пудровое напыление бровей</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-media="photo" data-src="images/work-4.jpg">
+                    <img src="images/work4.jpg" loading="lazy" alt="Оформление бровей">
+                    <div class="gallery-overlay">
+                        <span>Фото • Эстетика взгляда</span>
+                        <h4>Коррекция и окрашивание хной</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-card video-card">
+                    <img src="images/work5.jpg" loading="lazy" alt="Карбоновый пилинг и депиляция">
+                    <div class="gallery-overlay">
+                        <span>Фото • Уход за кожей</span>
+                        <h4>Карбоновый пилинг</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="media-lightbox" class="modal-backdrop">
+        <div class="lightbox-box">
+            <button type="button" class="lightbox-close" id="close-lightbox-btn">✕</button>
+            <div id="lightbox-content"></div>
+        </div>
+    </div>
+    <section id="masters" class="masters-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-script script-font">Команда студии</div>
+                <h2>Наши мастера</h2>
+                <p>Стерильность по СанПиН, индивидуальный подход и внимание к каждой детали</p>
+            </div>
+
+            <div class="masters-grid">
+                <div class="master-profile-card">
+                    <div class="master-photo-wrap">
+                        <img src="images/master-ylia.jpg" alt="Мастер Юлия — Studio Caramel">
+                    </div>
+                    <div class="master-info">
+                        <div class="master-name script-font">Юлия</div>
+                        <div class="master-role">Топ-мастер студии</div>
+                        <p>Сертифицированный мастер ногтевого сервиса, депиляции, перманентного макияжа и лазерного удаления. Регулярно повышаю квалификацию, чтобы предлагать современные и безопасные техники.</p>
+                        <a href="#booking" class="btn btn-primary select-master-btn" data-master="Юлия">Записаться к Топ-Мастеру Юлии</a>
+                    </div>
+                </div>
+
+                <div class="master-profile-card">
+                    <div class="master-photo-wrap">
+                        <img src="images/ira-master.png" alt="Мастер — Ирина">
+                    </div>
+                    <div class="master-info">
+                        <div class="master-name script-font">Ирина</div>
+                        <div class="master-role">Мастер студии</div>
+                        <p>Аккуратный комбинированный маникюр, выравнивание ногтевой пластины и стойкое покрытие, четкий квадрат. Поможет подобрать идеальную форму и дизайн под ваш образ.</p>
+                        <a href="#booking" class="btn btn-outline select-master-btn" data-master="Второй мастер">Записаться к мастеру-стажеру Ирине</a>
+                    </div>
+                </div>
+                <div class="master-profile-card">
+                    <div class="master-photo-wrap">
+                        <img src="images/сыллка на фото" alt="Мастер — Studio Caramel">
+                    </div>
+                    <div class="master-info">
+                        <div class="master-name script-font">Надежда</div>
+                        <div class="master-role">Мастер по уходу за кожей лица и тела</div>
+                        <p>УЛЬТРАЗВУКОВАЯ ЧИСТКА ЛИЦА, RF ЛИФТИНГ(Лицо, шея), ламинирование ресниц.</p>
+                        <p>Профессиональный уход за кожей лица и тела, Красота, Уход, Уверенность</p>
+                        <a href="#booking" class="btn btn-primary select-master-btn" data-master="Третий мастер">Записаться к мастеру Надежде</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <div class="container">
+            <div class="contact-grid" id="booking">
+                <div class="contact-info">
+                    <div class="section-script script-font contact-script">Контакты</div>
+                    <h3>Ждем вас в Studio Caramel</h3>
+
+                    <div class="info-item">
+                        <strong>Адрес студии:</strong>
+                        <span>г. Хабаровск, ул. Краснореченская, 34Б, каб. №5 (11)</span>
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Телефон для связи:</strong>
+                        <a href="tel:+79242182467">+7 (924) 218-24-67</a>
+                    </div>
+
+                    <div class="info-item">
+                        <strong>Режим работы:</strong>
+                        <span>По предварительной записи</span>
+                    </div>
+
+                    <div class="map-links">
+                        <a href="https://yandex.ru/maps/org/caramel/226199948294/?ll=135.099540%2C48.392126&z=17" target="_blank" class="btn btn-outline">Яндекс.Карты</a>
+                        <a href="https://go.2gis.com/FcE4t" target="_blank" class="btn btn-outline">2ГИС</a>
+                    </div>
+                </div>
+                <form class="booking-form" id="booking-form">
+                    <h3>Быстрая онлайн-запись</h3>
+                    <p class="form-subtitle">Заполните поля — заявка мгновенно отправится мастеру.</p>
+
+                    <div class="form-row-two">
+                        <div class="form-group">
+                            <label for="master-select">Выберите мастера</label>
+                            <select id="master-select" class="form-control">
+                                <option value="Юлия">Топ-Мастер Юлия</option>
+                                <option value="Второй мастер">Мастер-стажер Ирина</option>
+                                <option value="Любой свободный мастер">Любой свободный мастер</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service-select">Услуга или курс</label>
+                            <select id="service-select" class="form-control" required>
+                                <option value="">— Выберите из списка —</option>
+                                <optgroup label="Маникюр и наращивание">
+                                    <option value="Маникюр без покрытия (1 600 ₽)">Маникюр без покрытия — 1 600 ₽</option>
+                                    <option value="Маникюр + витаминное бондирование (2 500 ₽)">Маникюр + витаминное бондирование — 2 500 ₽</option>
+                                    <option value="Маникюр с укреплением гелем (2 800 ₽)">Маникюр с укреплением гелем — 2 800 ₽</option>
+                                    <option value="Маникюр с укреплением полигелем (3 000 ₽)">Маникюр с укреплением полигелем — 3 000 ₽</option>
+                                    <option value="Наращивание ногтей (от 3 500 ₽)">Наращивание ногтей — от 3 500 ₽</option>
+                                </optgroup>
+                                <optgroup label="Педикюр">
+                                    <option value="Педикюр: пальчики без покрытия (1 800 ₽)">Пальчики без покрытия — 1 800 ₽</option>
+                                    <option value="Педикюр: стопа полностью без покрытия (2 300 ₽)">Стопа полностью без покрытия — 2 300 ₽</option>
+                                    <option value="Педикюр: пальчики с покрытием (2 700 ₽)">Пальчики с покрытием — 2 700 ₽</option>
+                                    <option value="Педикюр: стопа полностью с покрытием (3 300 ₽)">Стопа полностью с покрытием — 3 300 ₽</option>
+                                </optgroup>
+                                <optgroup label="Брови и Перманентный макияж">
+                                    <option value="Коррекция бровей (300 ₽)">Коррекция бровей — 300 ₽</option>
+                                    <option value="Окрашивание бровей хной (1 200 ₽)">Окрашивание бровей хной — 1 200 ₽</option>
+                                    <option value="ПМ бровей: первичная процедура (7 000 ₽)">ПМ бровей: первичная процедура — 7 000 ₽</option>
+                                    <option value="ПМ бровей: коррекция (5 000 ₽)">ПМ бровей: коррекция — 5 000 ₽</option>
+                                    <option value="ПМ бровей: рефреш (7 000 ₽)">ПМ бровей: рефреш — 7 000 ₽</option>
+                                    <option value="ПМ бровей: перекрытие чужой работы (8 000 ₽)">ПМ бровей: перекрытие — 8 000 ₽</option>
+                                </optgroup>
+                                <optgroup label="Лазер, пилинг и депиляция">
+                                    <option value="Лазер / Ремувер осветление ПМ (3 000 ₽)">Лазер / Ремувер (губы, брови, межресничка) — 3 000 ₽</option>
+                                    <option value="Карбоновый пилинг лица (3 500 ₽)">Карбоновый пилинг (лицо) — 3 500 ₽</option>
+                                    <option value="Удаление пигментации (от 1 800 ₽)">Пигментация (лицо, руки) — от 1 800 ₽</option>
+                                    <option value="Удаление / осветление тату (от 3 000 ₽)">Осветление / удаление тату — от 3 000 ₽</option>
+                                    <option value="Депиляция / Шугаринг (выбранные зоны)">Депиляция / Шугаринг — от 300 ₽</option>
+                                </optgroup>
+                                <optgroup label="Обучение у мастера Юлии">
+                                    <option value="Обучение: Базовый курс маникюра">Обучение: Базовый курс маникюра</option>
+                                    <option value="Обучение: Повышение квалификации (ногти)">Обучение: Повышение квалификации (ногти)</option>
+                                    <option value="Обучение: Эстетический педикюр">Обучение: Эстетический педикюр</option>
+                                    <option value="Обучение: Шугаринг и депиляция">Обучение: Шугаринг и депиляция</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row-two">
+                        <div class="form-group">
+                            <label for="client-name">Ваше имя</label>
+                            <input type="text" id="client-name" class="form-control" placeholder="Например, Анна" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="client-phone">Телефон</label>
+                            <input type="tel" id="client-phone" class="form-control" placeholder="+7 (___) ___-__-__" required>
+                        </div>
+                    </div>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" required checked>
+                        <span>Я даю согласие на обработку персональных данных для подтверждения записи</span>
+                    </label>
+
+                    <button type="submit" class="btn btn-primary full-width-btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© Studio Caramel. Маникюр, педикюр и студия красоты, г. Хабаровск, ул. Краснореченская, 34Б</p>
+        </div>
+    </footer>
+
+    <!-- Плавающая кнопка «Памятка перед визитом» -->
+    <div class="floating-contact">
+        <button type="button" class="float-btn" id="open-memo-btn" title="Памятка перед визитом">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Всплывающее окно с памяткой -->
+    <div id="memo-modal" class="modal-backdrop">
+        <div class="modal-card memo-card">
+            <button type="button" class="lightbox-close" id="close-memo-x">✕</button>
+            <div class="section-script script-font memo-script">Памятка</div>
+            <h3>Как подготовиться к визиту</h3>
+
+            <div class="memo-list">
+                <div class="memo-item">
+                    <strong>💅 Маникюр и педикюр</strong>
+                    <span>В день процедуры не наносите жирные кремы и масла на руки или стопы — это улучшит сцепку покрытия.</span>
+                </div>
+
+                <div class="memo-item">
+                    <strong>✨ Шугаринг и депиляция</strong>
+                    <span>Оптимальная длина волосков — 4–5 мм (примерно 10–14 дней после бритвы). В день визита не используйте скрабы и лосьоны.</span>
+                </div>
+
+                <div class="memo-item">
+                    <strong>👁 Перманент и брови</strong>
+                    <span>За 24 часа исключите кофе, энергетики и алкоголь. Не выщипывайте брови самостоятельно за 1–2 недели до записи.</span>
+                </div>
+            </div>
+
+            <a href="#booking" class="btn btn-primary full-width-btn" id="memo-book-btn">Всё понятно, записаться</a>
+        </div>
+    </div>
+
+
+    <div id="success-modal" class="modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-icon">✓</div>
+            <h3>Заявка отправлена!</h3>
+            <p>Спасибо за обращение в <strong>Studio Caramel</strong>. Мы получили вашу заявку и свяжемся с вами в ближайшее время.</p>
+            <button type="button" class="btn btn-primary full-width-btn" id="close-modal-btn">Отлично</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
