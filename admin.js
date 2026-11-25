@@ -73,21 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') loginBtn.click();
     });
 
-    enableNotifyBtn.addEventListener('click', () => {
-        playDingSound();
-        if ('Notification' in window) {
-            Notification.requestPermission().then((perm) => {
-                if (perm === 'granted') {
-                    enableNotifyBtn.textContent = '🔔 Уведомления включены';
-                    showSystemPush('Studio Caramel', 'Системные уведомления о новых заявках включены!');
-                } else {
-                    alert('Разрешите уведомления в настройках браузера для этого сайта.');
-                }
-            });
-        } else {
-            alert('Ваш браузер не поддерживает пуш-уведомления. На iPhone добавьте сайт на экран «Домой» через меню «Поделиться».');
-        }
-    });
+function showSystemPush(title, bodyText) {
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+
+    if (swReg && swReg.showNotification) {
+        swReg.showNotification(title, {
+            body: bodyText,
+            icon: 'images/logo.png'
+        });
+    } else {
+        new Notification(title, { body: bodyText });
+    }
+}
+
 
     refreshBtn.addEventListener('click', () => fetchOrders());
 
