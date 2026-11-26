@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Caramel — Кабинет мастера</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://onesignal.com" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "c5c1a680-efc6-48ae-9373-4507ebb0777f",
+          notifyButton: { enable: true }
+        });
+      });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box" id="login-screen">
+            <div class="script">Studio Caramel</div>
+            <h2>Вход в кабинет заявок</h2>
+            <input type="password" id="pass-input" placeholder="Введите пароль">
+            <button type="button" class="btn btn-primary" id="login-btn">Войти</button>
+            <p class="error-text" id="login-error"></p>
+        </div>
+
+        <div id="admin-screen" style="display: none;">
+            <div class="top-bar">
+                <div>
+                    <div class="script">Studio Caramel</div>
+                    <p class="sub-info">Кабинет заявок • Нажмите колокольчик в углу для пушей</p>
+                </div>
+                <div class="top-actions">
+                    <button type="button" class="btn btn-sm btn-notify" id="refresh-btn">🔄 Обновить</button>
+                    <button type="button" class="btn btn-sm btn-del" id="logout-btn">Выйти</button>
+                </div>
+            </div>
+            <div class="orders-list" id="orders-list"></div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

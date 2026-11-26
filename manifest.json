@@ -1,0 +1,8 @@
+{
+  "name": "Studio Caramel — Кабинет",
+  "short_name": "Studio Caramel",
+  "start_url": "admin.html",
+  "display": "standalone",
+  "background_color": "#040305",
+  "theme_color": "#9b1bc7"
+}
