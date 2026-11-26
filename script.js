@@ -51,34 +51,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Отправка заявки в Telegram-бота (с учетом выбранного мастера)
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (event) => {
-            event.preventDefault();
+    // 8. Универсальная отправка заявки с сайта
+    const form = document.querySelector('form');
+    const successModal = document.getElementById('success-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
 
-            const submitBtn = bookingForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Отправляем...';
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-            const master = masterSelect ? masterSelect.value : 'Не выбран';
-            const service = encodeURIComponent(`${serviceSelect.value} (Мастер: ${master})`);
-            const name = encodeURIComponent(document.getElementById('client-name').value.trim());
-            const phone = encodeURIComponent(document.getElementById('client-phone').value.trim());
+            const selectEl = form.querySelector('select');
+            const inputs = form.querySelectorAll('input');
 
-            const fullUrl = `${GOOGLE_SCRIPT_URL}?service=${service}&name=${name}&phone=${phone}&t=${Date.now()}`;
+            const service = selectEl ? selectEl.value : 'Запись с сайта';
+            const name = inputs[0] ? inputs[0].value.trim() : '';
+            const phone = inputs[1] ? inputs[1].value.trim() : '';
 
-            const sender = new Image();
-            sender.src = fullUrl;
+            if (!name || !phone) {
+                alert('Пожалуйста, заполните имя и телефон');
+                return;
+            }
 
-            setTimeout(() => {
-                if (successModal) successModal.classList.add('open');
-                bookingForm.reset();
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
-            }, 700);
+            const params = new URLSearchParams({
+                service: service,
+                name: name,
+                phone: phone,
+                t: Date.now()
+            });
+
+            // Отправляем запрос на сервер
+            const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
+            fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
+
+            form.reset();
+            if (successModal) {
+                successModal.classList.add('open');
+            } else {
+                alert('Спасибо! Ваша заявка успешно отправлена.');
+            }
         });
     }
+
+    if (closeModalBtn && successModal) {
+        closeModalBtn.addEventListener('click', () => successModal.classList.remove('open'));
+    }
+});
 
     // 5. Плавное появление блоков при прокрутке
     const animatedItems = document.querySelectorAll(
