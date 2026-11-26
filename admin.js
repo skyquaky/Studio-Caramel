@@ -91,6 +91,12 @@ function renderOrders(orders) {
     orders.forEach((order) => {
         if (!isFirstLoad && !knownOrderIds.has(order.id)) {
             playDingSound();
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('💅 Новая заявка — Studio Caramel', {
+                    body: `${order.service} • ${order.name} (${order.phone})`,
+                    icon: 'images/logo.png'
+                });
+            }
         }
         knownOrderIds.add(order.id);
     });
