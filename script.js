@@ -204,17 +204,14 @@ document.querySelectorAll('form').forEach((form) => {
         closeModalBtn.addEventListener('click', () => successModal.classList.remove('open'));
     }
 });
-// Закрытие окна «Заявка отправлена!»
-const closeModalBtn = document.getElementById('close-modal-btn');
-if (closeModalBtn && successModal) {
-    closeModalBtn.addEventListener('click', () => {
-        successModal.classList.remove('open');
-    });
-}
-if (successModal) {
-    successModal.addEventListener('click', (e) => {
-        if (e.target === successModal) {
-            successModal.classList.remove('open');
-        }
-    });
-}
+
+// Универсальное закрытие окна «Заявка отправлена!»
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('success-modal');
+    if (!modal || !modal.classList.contains('open')) return;
+
+    // Закрываем при клике по любой кнопке внутри окна или по темному фону вокруг
+    if (e.target.closest('#success-modal button') || e.target === modal) {
+        modal.classList.remove('open');
+    }
+});
