@@ -204,3 +204,17 @@ document.querySelectorAll('form').forEach((form) => {
         closeModalBtn.addEventListener('click', () => successModal.classList.remove('open'));
     }
 });
+// Закрытие окна «Заявка отправлена!»
+const closeModalBtn = document.getElementById('close-modal-btn');
+if (closeModalBtn && successModal) {
+    closeModalBtn.addEventListener('click', () => {
+        successModal.classList.remove('open');
+    });
+}
+if (successModal) {
+    successModal.addEventListener('click', (e) => {
+        if (e.target === successModal) {
+            successModal.classList.remove('open');
+        }
+    });
+}
