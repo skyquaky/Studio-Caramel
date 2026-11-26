@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-// 8. Отправка заявки, пуш-уведомление и закрытие модального окна
-const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj"; // Впишите ваше точное название темы
+// 8. Отправка заявки, пуш и закрытие окна
+const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj";
 const ADMIN_URL = "https://skyquaky.github.io/Studio-Caramel/admin.html";
 
 document.querySelectorAll('form').forEach((form) => {
@@ -155,11 +155,8 @@ document.querySelectorAll('form').forEach((form) => {
 
         const selectEl = form.querySelector('select');
         const inputs = Array.from(form.querySelectorAll('input:not([type="hidden"]):not([type="submit"])'));
-        const firstInput = inputs.at(0);
-        const secondInput = inputs.at(1);
-
-        const name = firstInput ? firstInput.value.trim() : '';
-        const phone = secondInput ? secondInput.value.trim() : '';
+        const name = inputs[0] ? inputs[0].value.trim() : '';
+        const phone = inputs[1] ? inputs[1].value.trim() : '';
         const service = selectEl ? selectEl.value : 'Запись с сайта';
 
         if (!name || !phone) {
@@ -169,8 +166,8 @@ document.querySelectorAll('form').forEach((form) => {
 
         const timeTag = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
 
-        // 1. Мгновенный Push в ntfy.sh (сборка адреса без шаблонных скобок, чтобы ничего не пропало)
-        const ntfyUrl = "https://" + "ntfy" + ".sh/" + NTFY_TOPIC;
+        // 1. Отправка пуша
+        const ntfyUrl = ["https://ntfy", "sh"].join(".") + "/" + NTFY_TOPIC;
         fetch(ntfyUrl, {
             method: 'POST',
             headers: {
@@ -182,7 +179,7 @@ document.querySelectorAll('form').forEach((form) => {
             keepalive: true
         }).catch(() => {});
 
-        // 2. Сохранение в базу админки (Google Apps Script)
+        // 2. Сохранение в базу
         const params = new URLSearchParams({
             service: service,
             name: name,
@@ -192,20 +189,20 @@ document.querySelectorAll('form').forEach((form) => {
         fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors', keepalive: true }).catch(() => {});
 
         form.reset();
-        const caramelModal = document.getElementById('success-modal');
-        if (caramelModal) {
-            caramelModal.classList.add('open');
+        const modal = document.getElementById('success-modal');
+        if (modal) {
+            modal.classList.add('open');
         } else {
             alert('Спасибо! Ваша заявка успешно отправлена.');
         }
     });
 });
 
-// Закрытие окна по кнопке «Отлично» (#close-modal-btn) или клику мимо окна
+// Закрытие окна
 document.addEventListener('click', (e) => {
-    const caramelModal = document.getElementById('success-modal');
-    if (!caramelModal || !caramelModal.classList.contains('open')) return;
-    if (e.target.closest('#close-modal-btn') || e.target === caramelModal) {
-        caramelModal.classList.remove('open');
+    const modal = document.getElementById('success-modal');
+    if (!modal || !modal.classList.contains('open')) return;
+    if (e.target.closest('#close-modal-btn') || e.target === modal) {
+        modal.classList.remove('open');
     }
 });
