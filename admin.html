@@ -17,16 +17,42 @@
           serviceWorkerParam: { scope: "/Studio-Caramel/" },
           serviceWorkerPath: "Studio-Caramel/OneSignalSDKWorker.js"
         });
+
+        const btn = document.getElementById("push-sub-btn");
+        if (btn && OneSignal.Notifications.permission) {
+          btn.textContent = "✅ Пуши включены";
+        }
       });
 
       function subscribePush() {
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(async function(OneSignal) {
-          await OneSignal.Slidedown.promptPush();
-          await OneSignal.Notifications.requestPermission();
+        const btn = document.getElementById("push-sub-btn");
+        if (btn) btn.textContent = "⏳ Запрашиваем...";
+
+        if (!("Notification" in window)) {
+          alert("На iPhone сначала нажмите внизу Safari «Поделиться» → «На экран Домой» и откройте админку с иконки!");
+          if (btn) btn.textContent = "🔔 Включить пуши";
+          return;
+        }
+
+        window.OneSignalDeferred.push(async function(OneSignal) {
+          try {
+            await OneSignal.Notifications.requestPermission();
+            await OneSignal.User.PushSubscription.optIn();
+            if (OneSignal.Notifications.permission) {
+              if (btn) btn.textContent = "✅ Пуши включены";
+              alert("Готово! Теперь пуш-уведомления будут приходить даже при закрытом сайте.");
+            } else {
+              if (btn) btn.textContent = "🔔 Включить пуши";
+              alert("Вы запретили уведомления в настройках браузера. Разрешите их в строке адреса (значок замка слева от ссылки).");
+            }
+          } catch (e) {
+            if (btn) btn.textContent = "🔔 Включить пуши";
+            alert("Ошибка инициализации пушей (проверьте, что отключен AdBlock): " + e.message);
+          }
         });
       }
     </script>
+
 </head>
 <body>
     <div class="container">
