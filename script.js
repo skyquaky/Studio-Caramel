@@ -145,10 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-// 8. Мгновенная отправка пуша (совместимо с iPhone/iOS, Android и ПК)
-const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj"; // Впишите ваше точное название темы
-const ADMIN_URL = "https://skyquaky.github.io/Studio-Caramel/admin.html";
-const successModal = document.getElementById('success-modal');
+// 8. Отправка заявки, пуш-уведомление и закрытие модального окна
+const NTFY_TOPIC = "studio_caramel_push_2026"; // Впишите ваше точное название темы
+const ADMIN_URL = "https://github.io";
 
 document.querySelectorAll('form').forEach((form) => {
     form.addEventListener('submit', (e) => {
@@ -170,15 +169,16 @@ document.querySelectorAll('form').forEach((form) => {
 
         const timeTag = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
 
-        // 1. Мгновенный Push в ntfy.sh (Title строго латиницей для 100% доставки на iPhone)
-        fetch(`https://ntfy.sh{NTFY_TOPIC}`, {
+        // 1. Мгновенный Push в ntfy.sh (сборка адреса без шаблонных скобок, чтобы ничего не пропало)
+        const ntfyUrl = "https://ntfy.sh" + NTFY_TOPIC;
+        fetch(ntfyUrl, {
             method: 'POST',
             headers: {
-                'Title': `Studio Caramel (${timeTag})`,
+                'Title': 'Studio Caramel (' + timeTag + ')',
                 'Click': ADMIN_URL,
                 'Priority': 'max'
             },
-            body: `Новая заявка: ${service}\nКлиент: ${name}\nТел: ${phone}`,
+            body: 'Новая заявка: ' + service + '\nКлиент: ' + name + '\nТел: ' + phone,
             keepalive: true
         }).catch(() => {});
 
@@ -189,35 +189,23 @@ document.querySelectorAll('form').forEach((form) => {
             phone: phone,
             t: Date.now()
         });
-        fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { mode: 'no-cors', keepalive: true }).catch(() => {});
+        fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors', keepalive: true }).catch(() => {});
 
         form.reset();
-        if (successModal) {
-            successModal.classList.add('open');
+        const caramelModal = document.getElementById('success-modal');
+        if (caramelModal) {
+            caramelModal.classList.add('open');
         } else {
             alert('Спасибо! Ваша заявка успешно отправлена.');
         }
     });
 });
 
-    if (closeModalBtn && successModal) {
-        closeModalBtn.addEventListener('click', () => successModal.classList.remove('open'));
+// Закрытие окна по кнопке «Отлично» (#close-modal-btn) или клику мимо окна
+document.addEventListener('click', (e) => {
+    const caramelModal = document.getElementById('success-modal');
+    if (!caramelModal || !caramelModal.classList.contains('open')) return;
+    if (e.target.closest('#close-modal-btn') || e.target === caramelModal) {
+        caramelModal.classList.remove('open');
     }
 });
-
-// Закрытие окна по кнопке «Отлично» (#close-modal-btn) или клику мимо окна
-const caramelCloseBtn = document.getElementById('close-modal-btn');
-const caramelSuccessModal = document.getElementById('success-modal');
-
-if (caramelCloseBtn && caramelSuccessModal) {
-    caramelCloseBtn.addEventListener('click', () => {
-        caramelSuccessModal.classList.remove('open');
-    });
-}
-if (caramelSuccessModal) {
-    caramelSuccessModal.addEventListener('click', (e) => {
-        if (e.target === caramelSuccessModal) {
-            caramelSuccessModal.classList.remove('open');
-        }
-    });
-}
