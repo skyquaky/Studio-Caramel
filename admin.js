@@ -163,15 +163,9 @@ if (clearAllBtn) {
     clearAllBtn.addEventListener('click', () => {
         if (!confirm('Точно удалить ВСЕ заявки?')) return;
 
-        // Берем ссылку и пароль из вашего файла (проверьте имена в начале admin.js)
-        const scriptUrl = typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : (typeof API_URL !== 'undefined' ? API_URL : '');
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbx0KvHrRAIZx0Vif93bG8oX2l54Vas0zyWAMEf_qHHFP8os4CYxjmVFmeRZEEfT35o2ig/exec";
         const passInput = document.getElementById('admin-pass');
         const pass = (passInput && passInput.value) ? passInput.value : 'caramel2026';
-
-        if (!scriptUrl) {
-            alert('Не найдена ссылка на скрипт в начале admin.js');
-            return;
-        }
 
         clearAllBtn.disabled = true;
         clearAllBtn.textContent = 'Очистка...';
@@ -191,3 +185,4 @@ if (clearAllBtn) {
         });
     });
 }
+
