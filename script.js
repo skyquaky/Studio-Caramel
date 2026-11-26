@@ -205,13 +205,19 @@ document.querySelectorAll('form').forEach((form) => {
     }
 });
 
-// Универсальное закрытие окна «Заявка отправлена!»
-document.addEventListener('click', (e) => {
-    const modal = document.getElementById('success-modal');
-    if (!modal || !modal.classList.contains('open')) return;
+// Закрытие окна по кнопке «Отлично» (#close-modal-btn) или клику мимо окна
+const caramelCloseBtn = document.getElementById('close-modal-btn');
+const caramelSuccessModal = document.getElementById('success-modal');
 
-    // Закрываем при клике по любой кнопке внутри окна или по темному фону вокруг
-    if (e.target.closest('#success-modal button') || e.target === modal) {
-        modal.classList.remove('open');
-    }
-});
+if (caramelCloseBtn && caramelSuccessModal) {
+    caramelCloseBtn.addEventListener('click', () => {
+        caramelSuccessModal.classList.remove('open');
+    });
+}
+if (caramelSuccessModal) {
+    caramelSuccessModal.addEventListener('click', (e) => {
+        if (e.target === caramelSuccessModal) {
+            caramelSuccessModal.classList.remove('open');
+        }
+    });
+}
