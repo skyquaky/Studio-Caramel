@@ -8,46 +8,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="admin.css">
-    <script src="https://onesignal.com" defer></script>
-    <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: "c5c1a680-efc6-48ae-9373-4507ebb0777f",
-          serviceWorkerParam: { scope: "/Studio-Caramel/" },
-          serviceWorkerPath: "Studio-Caramel/OneSignalSDKWorker.js"
-        });
-
-        const btn = document.getElementById("push-sub-btn");
-        if (btn && OneSignal.User.PushSubscription.optedIn) {
-          btn.textContent = "✅ Пуши включены";
-        }
-      });
-
-      async function subscribePush() {
-        const btn = document.getElementById("push-sub-btn");
-        if (!("Notification" in window)) {
-          alert("На iPhone сначала нажмите «Поделиться» → «На экран Домой» и откройте админку с иконки!");
-          return;
-        }
-
-        const perm = await Notification.requestPermission();
-        if (perm !== "granted") {
-          alert("Разрешите уведомления в настройках браузера (нажмите на замочек слева от адресной строки).");
-          return;
-        }
-
-        if (btn) btn.textContent = "✅ Пуши включены";
-
-        window.OneSignalDeferred.push(async function(OneSignal) {
-          try {
-            await OneSignal.User.PushSubscription.optIn();
-          } catch (e) {
-            console.log(e);
-          }
-        });
-      }
-    </script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "c5c1a680-e4c6-48ae-9373-4507ebc0772f",
+    });
+  });
+</script>
 
 
 
