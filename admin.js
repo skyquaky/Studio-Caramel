@@ -157,3 +157,30 @@ function playDingSound() {
 function escapeHtml(str) {
     return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
+// Очистка всех заявок в одну кнопку
+const clearAllBtn = document.getElementById('clear-all-btn');
+if (clearAllBtn) {
+    clearAllBtn.addEventListener('click', () => {
+        if (!confirm('Точно удалить ВСЕ заявки без возможности восстановления?')) return;
+        
+        const savedPass = localStorage.getItem('caramel_admin_pass') || sessionStorage.getItem('caramel_admin_pass') || 'caramel2026';
+        clearAllBtn.disabled = true;
+        clearAllBtn.textContent = 'Очистка...';
+
+        const script = document.createElement('script');
+        const cbName = 'clearAllCb_' + Date.now();
+        window[cbName] = function(res) {
+            delete window[cbName];
+            script.remove();
+            clearAllBtn.disabled = false;
+            clearAllBtn.textContent = 'Очистить всё';
+            if (res && res.ok) {
+                location.reload();
+            } else {
+                alert('Ошибка при очистке заявок');
+            }
+        };
+        script.src = `${GOOGLE_SCRIPT_URL}?action=status&status=clear_all&pass=${encodeURIComponent(savedPass)}&callback=${cbName}`;
+        document.body.appendChild(script);
+    });
+}
