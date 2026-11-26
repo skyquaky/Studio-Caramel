@@ -145,41 +145,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-// 8. Надежная отправка формы записи
+// 8. Мгновенная отправка пуша и сохранение заявки в базу
+const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj";
+const ADMIN_URL = "https://github.io";
 const successModal = document.getElementById('success-modal');
-const closeModalBtn = document.getElementById('close-modal-btn');
 
 document.querySelectorAll('form').forEach((form) => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const selectEl = form.querySelector('select');
-        const inputsList = Array.from(form.querySelectorAll('input:not([type="hidden"]):not([type="submit"])'));
-        const firstInput = inputsList[0];
-        const secondInput = inputsList[1];
-
+        const inputs = form.querySelectorAll('input:not([type="hidden"]):not([type="submit"])');
+        const name = inputs[0] ? inputs[0].value.trim() : '';
+        const phone = inputs[1] ? inputs[1].value.trim() : '';
         const service = selectEl ? selectEl.value : 'Запись с сайта';
-        const name = firstInput ? firstInput.value.trim() : '';
-        const phone = secondInput ? secondInput.value.trim() : '';
 
         if (!name || !phone) {
             alert('Пожалуйста, заполните имя и телефон');
             return;
         }
 
+        // 1. Мгновенный Push напрямую в ntfy.sh (прилетает за 0.2 сек)
+        fetch(`https://ntfy.sh{NTFY_TOPIC}`, {
+            method: 'POST',
+            headers: {
+                'Title': 'Новая заявка — Studio Caramel',
+                'Click': ADMIN_URL,
+                'Priority': 'high'
+            },
+            body: `${service} • ${name} (${phone})`
+        }).catch(() => {});
+
+        // 2. Сохранение в базу админки (Google Apps Script)
         const params = new URLSearchParams({
             service: service,
             name: name,
             phone: phone,
             t: Date.now()
         });
-
-        const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
-        
-        // Отправка через fetch + дублирующий пинг через Image (гарантирует доставку)
-        fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
-        const ping = new Image();
-        ping.src = url;
+        fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { mode: 'no-cors' }).catch(() => {});
 
         form.reset();
         if (successModal) {
@@ -189,6 +193,7 @@ document.querySelectorAll('form').forEach((form) => {
         }
     });
 });
+
 
     if (closeModalBtn && successModal) {
         closeModalBtn.addEventListener('click', () => successModal.classList.remove('open'));
