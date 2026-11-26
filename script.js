@@ -206,3 +206,4 @@ document.addEventListener('click', (e) => {
         modal.classList.remove('open');
     }
 });
+});
