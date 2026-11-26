@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Caramel — Кабинет мастера</title>
     <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="admin.css">
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "c5c1a680-e4c6-48ae-9373-4507ebc0772f",
-    });
-  });
-</script>
-
+    <script src="https://onesignal.com" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "c5c1a680-efc6-48ae-9373-4507ebb0777f",
+        });
+      });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -33,10 +33,9 @@
             <div class="top-bar">
                 <div>
                     <div class="script">Studio Caramel</div>
-                    <p class="sub-info">Кабинет заявок • Обновляется каждые 10 сек</p>
+                    <p class="sub-info">Кабинет заявок • Нажмите красный колокольчик внизу справа для фоновых пушей</p>
                 </div>
                 <div class="top-actions">
-                    <button type="button" class="btn btn-sm btn-notify" id="push-sub-btn" onclick="subscribePush()">🔔 Включить пуши</button>
                     <button type="button" class="btn btn-sm btn-notify" id="refresh-btn">🔄 Обновить</button>
                     <button type="button" class="btn btn-sm btn-del" id="logout-btn">Выйти</button>
                 </div>
