@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 8. Мгновенная отправка пуша (совместимо с iPhone/iOS, Android и ПК)
 const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj"; // Впишите ваше точное название темы
-const ADMIN_URL = "https://github.io";
+const ADMIN_URL = "https://skyquaky.github.io/Studio-Caramel/admin.html";
 const successModal = document.getElementById('success-modal');
 
 document.querySelectorAll('form').forEach((form) => {
