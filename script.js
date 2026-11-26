@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Исправленная отправка формы записи
+    // 8. Надежная отправка формы записи
     const form = document.querySelector('form');
     const successModal = document.getElementById('success-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
@@ -155,11 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const selectEl = form.querySelector('select');
-            const inputs = form.querySelectorAll('input');
+            const inputsList = Array.from(form.querySelectorAll('input'));
+            const firstInput = inputsList.shift();
+            const secondInput = inputsList.shift();
 
             const service = selectEl ? selectEl.value : 'Запись с сайта';
-            const name = inputs[0] ? inputs[0].value.trim() : '';
-            const phone = inputs[1] ? inputs[1].value.trim() : '';
+            const name = firstInput ? firstInput.value.trim() : '';
+            const phone = secondInput ? secondInput.value.trim() : '';
 
             if (!name || !phone) {
                 alert('Пожалуйста, заполните имя и телефон');
