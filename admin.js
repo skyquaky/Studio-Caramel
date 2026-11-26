@@ -161,26 +161,33 @@ function escapeHtml(str) {
 const clearAllBtn = document.getElementById('clear-all-btn');
 if (clearAllBtn) {
     clearAllBtn.addEventListener('click', () => {
-        if (!confirm('Точно удалить ВСЕ заявки без возможности восстановления?')) return;
-        
-        const savedPass = localStorage.getItem('caramel_admin_pass') || sessionStorage.getItem('caramel_admin_pass') || 'caramel2026';
+        if (!confirm('Точно удалить ВСЕ заявки?')) return;
+
+        // Берем ссылку и пароль из вашего файла (проверьте имена в начале admin.js)
+        const scriptUrl = typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : (typeof API_URL !== 'undefined' ? API_URL : '');
+        const passInput = document.getElementById('admin-pass');
+        const pass = (passInput && passInput.value) ? passInput.value : 'caramel2026';
+
+        if (!scriptUrl) {
+            alert('Не найдена ссылка на скрипт в начале admin.js');
+            return;
+        }
+
         clearAllBtn.disabled = true;
         clearAllBtn.textContent = 'Очистка...';
 
-        const script = document.createElement('script');
-        const cbName = 'clearAllCb_' + Date.now();
-        window[cbName] = function(res) {
-            delete window[cbName];
-            script.remove();
+        fetch(`${scriptUrl}?action=status&status=clear_all&pass=${encodeURIComponent(pass)}&t=${Date.now()}`, {
+            mode: 'no-cors'
+        })
+        .then(() => {
+            setTimeout(() => {
+                location.reload();
+            }, 800);
+        })
+        .catch(() => {
             clearAllBtn.disabled = false;
             clearAllBtn.textContent = 'Очистить всё';
-            if (res && res.ok) {
-                location.reload();
-            } else {
-                alert('Ошибка при очистке заявок');
-            }
-        };
-        script.src = `${GOOGLE_SCRIPT_URL}?action=status&status=clear_all&pass=${encodeURIComponent(savedPass)}&callback=${cbName}`;
-        document.body.appendChild(script);
+            alert('Ошибка при очистке');
+        });
     });
 }
