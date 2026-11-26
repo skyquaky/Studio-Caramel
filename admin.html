@@ -12,46 +12,50 @@
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: "c5c1a680-efc6-48ae-9373-4507ebb0777f",
-          serviceWorkerParam: { scope: "/Studio-Caramel/" },
-          serviceWorkerPath: "Studio-Caramel/OneSignalSDKWorker.js"
-        });
-
-        const btn = document.getElementById("push-sub-btn");
-        if (btn && OneSignal.Notifications.permission) {
-          btn.textContent = "✅ Пуши включены";
+        try {
+          await OneSignal.init({
+            appId: "c5c1a680-efc6-48ae-9373-4507ebb0777f",
+            serviceWorkerParam: { scope: "/Studio-Caramel/" },
+            serviceWorkerPath: "/Studio-Caramel/OneSignalSDKWorker.js"
+          });
+          const btn = document.getElementById("push-sub-btn");
+          if (btn && OneSignal.Notifications.permission) {
+            btn.textContent = "✅ Пуши включены";
+          }
+        } catch (err) {
+          console.error("OneSignal init error:", err);
         }
       });
 
-      function subscribePush() {
+      async function subscribePush() {
         const btn = document.getElementById("push-sub-btn");
-        if (btn) btn.textContent = "⏳ Запрашиваем...";
-
         if (!("Notification" in window)) {
           alert("На iPhone сначала нажмите внизу Safari «Поделиться» → «На экран Домой» и откройте админку с иконки!");
+          return;
+        }
+
+        if (btn) btn.textContent = "⏳ Запрашиваем...";
+
+        const perm = await Notification.requestPermission();
+        if (perm !== "granted") {
           if (btn) btn.textContent = "🔔 Включить пуши";
+          alert("Разрешите уведомления в настройках браузера (нажмите на замочек слева от адресной строки).");
           return;
         }
 
         window.OneSignalDeferred.push(async function(OneSignal) {
           try {
-            await OneSignal.Notifications.requestPermission();
             await OneSignal.User.PushSubscription.optIn();
-            if (OneSignal.Notifications.permission) {
-              if (btn) btn.textContent = "✅ Пуши включены";
-              alert("Готово! Теперь пуш-уведомления будут приходить даже при закрытом сайте.");
-            } else {
-              if (btn) btn.textContent = "🔔 Включить пуши";
-              alert("Вы запретили уведомления в настройках браузера. Разрешите их в строке адреса (значок замка слева от ссылки).");
-            }
+            if (btn) btn.textContent = "✅ Пуши включены";
+            alert("Готово! Устройство подписано на фоновые пуш-уведомления.");
           } catch (e) {
             if (btn) btn.textContent = "🔔 Включить пуши";
-            alert("Ошибка инициализации пушей (проверьте, что отключен AdBlock): " + e.message);
+            alert("Ошибка: " + e.message);
           }
         });
       }
     </script>
+
 
 </head>
 <body>
