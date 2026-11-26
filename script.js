@@ -145,47 +145,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Надежная отправка формы записи
-    const form = document.querySelector('form');
-    const successModal = document.getElementById('success-modal');
-    const closeModalBtn = document.getElementById('close-modal-btn');
+// 8. Надежная отправка формы записи
+const successModal = document.getElementById('success-modal');
+const closeModalBtn = document.getElementById('close-modal-btn');
 
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+document.querySelectorAll('form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-            const selectEl = form.querySelector('select');
-            const inputsList = Array.from(form.querySelectorAll('input'));
-            const firstInput = inputsList.shift();
-            const secondInput = inputsList.shift();
+        const selectEl = form.querySelector('select');
+        const inputsList = Array.from(form.querySelectorAll('input:not([type="hidden"]):not([type="submit"])'));
+        const firstInput = inputsList[0];
+        const secondInput = inputsList[1];
 
-            const service = selectEl ? selectEl.value : 'Запись с сайта';
-            const name = firstInput ? firstInput.value.trim() : '';
-            const phone = secondInput ? secondInput.value.trim() : '';
+        const service = selectEl ? selectEl.value : 'Запись с сайта';
+        const name = firstInput ? firstInput.value.trim() : '';
+        const phone = secondInput ? secondInput.value.trim() : '';
 
-            if (!name || !phone) {
-                alert('Пожалуйста, заполните имя и телефон');
-                return;
-            }
+        if (!name || !phone) {
+            alert('Пожалуйста, заполните имя и телефон');
+            return;
+        }
 
-            const params = new URLSearchParams({
-                service: service,
-                name: name,
-                phone: phone,
-                t: Date.now()
-            });
-
-            const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
-            fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
-
-            form.reset();
-            if (successModal) {
-                successModal.classList.add('open');
-            } else {
-                alert('Спасибо! Ваша заявка успешно отправлена.');
-            }
+        const params = new URLSearchParams({
+            service: service,
+            name: name,
+            phone: phone,
+            t: Date.now()
         });
-    }
+
+        const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
+        
+        // Отправка через fetch + дублирующий пинг через Image (гарантирует доставку)
+        fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
+        const ping = new Image();
+        ping.src = url;
+
+        form.reset();
+        if (successModal) {
+            successModal.classList.add('open');
+        } else {
+            alert('Спасибо! Ваша заявка успешно отправлена.');
+        }
+    });
+});
 
     if (closeModalBtn && successModal) {
         closeModalBtn.addEventListener('click', () => successModal.classList.remove('open'));
