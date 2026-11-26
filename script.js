@@ -145,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-// 8. Мгновенная отправка пуша и сохранение заявки в базу
-const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj";
+// 8. Мгновенная отправка пуша (совместимо с iPhone/iOS, Android и ПК)
+const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj"; // Впишите ваше точное название темы
 const ADMIN_URL = "https://github.io";
 const successModal = document.getElementById('success-modal');
 
@@ -155,9 +155,12 @@ document.querySelectorAll('form').forEach((form) => {
         e.preventDefault();
 
         const selectEl = form.querySelector('select');
-        const inputs = form.querySelectorAll('input:not([type="hidden"]):not([type="submit"])');
-        const name = inputs[0] ? inputs[0].value.trim() : '';
-        const phone = inputs[1] ? inputs[1].value.trim() : '';
+        const inputs = Array.from(form.querySelectorAll('input:not([type="hidden"]):not([type="submit"])'));
+        const firstInput = inputs.at(0);
+        const secondInput = inputs.at(1);
+
+        const name = firstInput ? firstInput.value.trim() : '';
+        const phone = secondInput ? secondInput.value.trim() : '';
         const service = selectEl ? selectEl.value : 'Запись с сайта';
 
         if (!name || !phone) {
@@ -165,15 +168,18 @@ document.querySelectorAll('form').forEach((form) => {
             return;
         }
 
-        // 1. Мгновенный Push напрямую в ntfy.sh (прилетает за 0.2 сек)
+        const timeTag = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+        // 1. Мгновенный Push в ntfy.sh (Title строго латиницей для 100% доставки на iPhone)
         fetch(`https://ntfy.sh{NTFY_TOPIC}`, {
             method: 'POST',
             headers: {
-                'Title': 'Новая заявка — Studio Caramel',
+                'Title': `Studio Caramel (${timeTag})`,
                 'Click': ADMIN_URL,
-                'Priority': 'high'
+                'Priority': 'max'
             },
-            body: `${service} • ${name} (${phone})`
+            body: `Новая заявка: ${service}\nКлиент: ${name}\nТел: ${phone}`,
+            keepalive: true
         }).catch(() => {});
 
         // 2. Сохранение в базу админки (Google Apps Script)
@@ -183,7 +189,7 @@ document.querySelectorAll('form').forEach((form) => {
             phone: phone,
             t: Date.now()
         });
-        fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { mode: 'no-cors' }).catch(() => {});
+        fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { mode: 'no-cors', keepalive: true }).catch(() => {});
 
         form.reset();
         if (successModal) {
@@ -193,7 +199,6 @@ document.querySelectorAll('form').forEach((form) => {
         }
     });
 });
-
 
     if (closeModalBtn && successModal) {
         closeModalBtn.addEventListener('click', () => successModal.classList.remove('open'));
