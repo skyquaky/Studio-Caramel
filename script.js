@@ -146,8 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 // 8. Отправка заявки, пуш-уведомление и закрытие модального окна
-const NTFY_TOPIC = "studio_caramel_push_2026"; // Впишите ваше точное название темы
-const ADMIN_URL = "https://github.io";
+const NTFY_TOPIC = "caramel_5278461551612652435435618765432hgfdrfefdfghghj"; // Впишите ваше точное название темы
+const ADMIN_URL = "https://skyquaky.github.io/Studio-Caramel/admin.html";
 
 document.querySelectorAll('form').forEach((form) => {
     form.addEventListener('submit', (e) => {
@@ -170,7 +170,7 @@ document.querySelectorAll('form').forEach((form) => {
         const timeTag = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
 
         // 1. Мгновенный Push в ntfy.sh (сборка адреса без шаблонных скобок, чтобы ничего не пропало)
-        const ntfyUrl = "https://ntfy.sh" + NTFY_TOPIC;
+        const ntfyUrl = "https://" + "ntfy" + ".sh/" + NTFY_TOPIC;
         fetch(ntfyUrl, {
             method: 'POST',
             headers: {
