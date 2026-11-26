@@ -14,9 +14,18 @@
       OneSignalDeferred.push(async function(OneSignal) {
         await OneSignal.init({
           appId: "c5c1a680-efc6-48ae-9373-4507ebb0777f",
-          notifyButton: { enable: true }
+          serviceWorkerParam: { scope: "/Studio-Caramel/" },
+          serviceWorkerPath: "Studio-Caramel/OneSignalSDKWorker.js"
         });
       });
+
+      function subscribePush() {
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+          await OneSignal.Slidedown.promptPush();
+          await OneSignal.Notifications.requestPermission();
+        });
+      }
     </script>
 </head>
 <body>
@@ -33,9 +42,10 @@
             <div class="top-bar">
                 <div>
                     <div class="script">Studio Caramel</div>
-                    <p class="sub-info">Кабинет заявок • Нажмите колокольчик в углу для пушей</p>
+                    <p class="sub-info">Кабинет заявок • Обновляется каждые 10 сек</p>
                 </div>
                 <div class="top-actions">
+                    <button type="button" class="btn btn-sm btn-notify" onclick="subscribePush()">🔔 Включить пуши</button>
                     <button type="button" class="btn btn-sm btn-notify" id="refresh-btn">🔄 Обновить</button>
                     <button type="button" class="btn btn-sm btn-del" id="logout-btn">Выйти</button>
                 </div>
